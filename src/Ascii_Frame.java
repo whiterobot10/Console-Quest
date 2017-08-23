@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Ascii_Frame {
 	private final String name;
 	private final String Lines[];
+	private final int xOff,yOff;
 
 	private static Map<String, Ascii_Frame> frames = new HashMap<>();
 	
@@ -32,12 +33,21 @@ public class Ascii_Frame {
 				if (scanner.next().equals("Frame")) {
 					String Name = scanner.next();
 					int rows = scanner.nextInt();
+					int colls = scanner.nextInt();
+					StringBuilder sb = new StringBuilder();
+					for(int i=0;i<colls;i++){
+						sb.append(" ");
+					}
+					String whiteSpace = sb.toString();
+					int x = scanner.nextInt();
+					int y = scanner.nextInt();
 					String Lines[] = new String[rows];
 					scanner.nextLine();
 					for (int i = 0; i < rows; i++) {
-						Lines[i] = scanner.nextLine();
+						String hold = scanner.nextLine()+whiteSpace;
+						Lines[i] = hold.substring(0, colls);
 					}
-					frames.add(new Ascii_Frame(Name, Lines));
+					frames.add(new Ascii_Frame(Name, Lines, x, y));
 				}
 
 			}
@@ -49,10 +59,12 @@ public class Ascii_Frame {
 
 	}
 
-	public Ascii_Frame(String _Name, String _Lines[]) {
+	public Ascii_Frame(String _Name, String _Lines[],int x, int y) {
 		name = _Name;
 		Lines = Arrays.copyOf(_Lines, _Lines.length);
 		frames.put(name, this);
+		xOff=x;
+		yOff=y;
 	}
 
 	public String getLine(int i) {
