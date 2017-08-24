@@ -6,18 +6,18 @@ Frame New_Sun_Blank 20 33 12 15
 |  |         |  |         |  |
  \  \        |  |        /  /
   \  \    ___|  |___    /  /
-   \  \.-'°°°|  |°°°'-./  /
-    \.'°°°°°°|  |°°°°°°'./
-    /°°°°°°°°\__/°°°°°°°°\
-   /°°°°°°°°°°°°°°°°°°°°°°\
-  ;°°°°°°°°°°°°°°°°°°°°°°°°;
-  |°°°°°°°°°°/||\°°°°°°°°°°|
-  |°°°°°°°°°°\__/°°°°°°°°°°|
-  ;°°°°°°°°°°°°°°°°°°°°°°°°;
-   \°°°°°°°°°°°°°°°°°°°°°°/
-    \°°°°°°°°°°°°°°°°°°°°/
-     '.°°°°°°°°°°°°°°°°.'
-       '-._°°°°°°°°_.-'
+   \  \.-'fff|  |fff'-./  /
+    \.'ffffff|  |ffffff'./
+    /ffffffff\__/ffffffff\
+   /ffffffffffffffffffffff\
+  ;ffffffffffffffffffffffff;
+  |ffffffffff/||\ffffffffff|
+  |ffffffffff\__/ffffffffff|
+  ;ffffffffffffffffffffffff;
+   \ffffffffffffffffffffff/
+    \ffffffffffffffffffff/
+     '.ffffffffffffffff.'
+       '-._ffffffff_.-'
            ''----''
 Frame New_Sun_Attack 20 103 12 15
    |  |         |  |         |  |
@@ -27,16 +27,16 @@ Frame New_Sun_Attack 20 103 12 15
    |  |         |  |         |  |
     \  \        |  |        /  /
      \  \    ___|  |___    /  /
-      \  \.-'°°°|  |°°°'-./  /
-       \.'°°°°°°|  |°°°°°°'./
-       /°°°°°°°°\__/°°°°°°°°\
-      /°°°°°°°°°°°°°°°°°°°°°°\
-     ;°°°°°°°°°°°°°°°°°°°°°°°°;
-     |°°°°°°°°°°/||\°°°°°°°°°°|
-     |°°°°°°°°°°\__/°°°°°°°°°°|
-     ;°°°°°°°°°°°°°°°°°°°°°°°°;
-      \°°°°°°°°°°°°°°°°°°°°°°/  /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /
-       \°°°°°°°°°°°°°°°°°°°°/\ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /
-        '.°°°°°°°°°°°°°°°°.'  /    /    /    /    /    /    /    /    /    /    /    /    /    /    /
-          '-._°°°°°°°°_.-'\  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \
+      \  \.-'fff|  |fff'-./  /
+       \.'ffffff|  |ffffff'./
+       /ffffffff\__/ffffffff\
+      /ffffffffffffffffffffff\
+     ;ffffffffffffffffffffffff;
+     |ffffffffff/||\ffffffffff|
+     |ffffffffff\__/ffffffffff|
+     ;ffffffffffffffffffffffff;
+      \ffffffffffffffffffffff/  /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /\   /
+       \ffffffffffffffffffff/\ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /  \ /
+        '.ffffffffffffffff.'  /    /    /    /    /    /    /    /    /    /    /    /    /    /    /
+          '-._ffffffff_.-'\  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \  / \
               ''----''     \/   \/   \/   \/   \/   \/   \/   \/   \/   \/   \/   \/   \/   \/   \/   \
