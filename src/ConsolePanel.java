@@ -45,28 +45,28 @@ public class ConsolePanel extends JPanel {
 
 	public void setChar(char ch, int c, int r) {
 		if (r < Console.length && c < Console[r].length && ch != ' ') {
-//			if (ch == 'º') {
-//				if (main.rng.nextInt(3) == 0) {
-//					ch = '¡';
-//				} else {
-//					ch = ' ';
-//				}
-//			}
-//			if (ch == '¡') {
-//				if (main.rng.nextBoolean()) {
-//					ch = '1';
-//				} else {
-//					ch = '0';
-//				}
-//			}
-//			if (ch == 'ƒ') {
-//				int i = main.rng.nextInt(15);
-//				ch = Integer.toHexString(i).charAt(0);
-//			}
+			if (ch == '°') {
+				if (main.rng.nextInt(3) == 0) {
+					ch = '¡';
+				} else {
+					ch = ' ';
+				}
+			}
+			if (ch == '¡') {
+				if (main.rng.nextBoolean()) {
+					ch = '1';
+				} else {
+					ch = '0';
+				}
+			}
+			if (ch == 'ƒ') {
+				int i = main.rng.nextInt(15);
+				ch = Integer.toHexString(i).charAt(0);
+			}
 			Console[r][c] = ch;
-//			if (ch == '–') {
-//				Console[r][c] = ' ';
-//			}
+			if (ch == '–') {
+				Console[r][c] = ' ';
+			}
 
 		}
 	}
