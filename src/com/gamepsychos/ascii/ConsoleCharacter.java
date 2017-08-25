@@ -1,6 +1,7 @@
 package com.gamepsychos.ascii;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class ConsoleCharacter {
 
@@ -28,6 +29,16 @@ public class ConsoleCharacter {
 
 	public char getCharacter() {
 		return ch;
+	}
+
+	public void draw(Graphics2D g2d, int fontWidth, int fontHeight, int fontDescent) {
+		if (hasBackground()) {
+			g2d.setColor(getBackground());
+			g2d.fillRect(0, fontDescent, fontWidth, fontHeight);
+		}
+
+		g2d.setColor(getColor());
+		g2d.drawString("" + getCharacter(), 0, fontHeight);	
 	}
 	
 }

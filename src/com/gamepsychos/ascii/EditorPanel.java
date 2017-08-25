@@ -14,16 +14,24 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class EditorPanel extends JPanel
 		implements Console, MouseListener, MouseMotionListener, KeyListener, Observer<Message> {
 
+	private final Map<Position, AsciiFrame> frames;
 	private int rows, cols;
 	private final Console console;
 	private Font font;
@@ -37,7 +45,14 @@ public class EditorPanel extends JPanel
 
 	private final Set<Integer> pressedKeys;
 	private final Set<Position> tentativeSelect;
+	
+	private final JMenuBar menu;
 
+	
+	public JMenuBar getMenuBar(){
+		return menu;
+		
+	}
 	public Color getColor() {
 		return console.getColor();
 	}
@@ -60,12 +75,72 @@ public class EditorPanel extends JPanel
 		this.cursor = new Cursor(this);
 		this.pressedKeys = new TreeSet<>();
 		this.tentativeSelect = new HashSet<>();
+		this.frames = new HashMap<>();
 		setFont(fontName);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setBackground(Color.BLACK);
+		
+		menu = initMenu();
 	}
 
+	private JMenuBar initMenu(){
+		JMenuBar menubar = new JMenuBar();
+		
+		JMenu file = new JMenu("File");
+		menubar.add(file);
+		file.setMnemonic('F');
+		
+		JMenuItem exit = new JMenuItem("Exit");
+		file.add(exit);
+		exit.setMnemonic('x');
+		exit.addActionListener(e -> AsciiFrameEditor.exit(0));
+		
+		
+		JMenu frame = new JMenu("Frame");
+		menubar.add(frame);
+		frame.setMnemonic('r');
+		
+		JMenuItem create = new JMenuItem("Create Frame From Selection");
+		frame.add(create);
+		create.setMnemonic('C');
+		create.addActionListener(e -> createFrame());
+		
+		JMenuItem load = new JMenuItem("Load Frame From File");
+		frame.add(load);
+		load.setMnemonic('L');
+		
+		return menubar;
+	}
+	
+	private void createFrame() {
+		int minRow = Integer.MAX_VALUE;
+		int maxRow = Integer.MIN_VALUE;
+		int minCol = Integer.MAX_VALUE;
+		int maxCol = Integer.MIN_VALUE;
+		Map<Position, ConsoleCharacter> tempCharacters = new HashMap<>();
+		for(Position p : getSelected()){
+			minRow = Math.min(p.row, minRow);
+			maxRow = Math.max(p.row, maxRow);
+			minCol = Math.min(p.col, minCol);
+			maxCol = Math.max(p.col, maxCol);
+			tempCharacters.put(p, console.getChar(p.col, p.row));
+		}
+		
+		int rows = maxRow - minRow + 1;
+		int cols = maxCol - minCol + 1;
+		Map<Position, ConsoleCharacter> characters = new HashMap<>();
+		for(Entry<Position, ConsoleCharacter> e : tempCharacters.entrySet()){
+			Position p = e.getKey();
+			ConsoleCharacter ch = e.getValue();
+			characters.put(new Position(p.row-minRow, p.col-minCol), ch);
+			console.deleteChar(p.col, p.row);
+		}
+		
+		AsciiFrame frame = new AsciiFrame(rows, cols, characters);
+		frames.put(new Position(minRow, minCol), frame);
+	}
+	
 	private void setFont(String fontName) {
 		this.font = new Font(fontName, Font.PLAIN, 20);
 		Canvas c = new Canvas();
@@ -92,17 +167,10 @@ public class EditorPanel extends JPanel
 
 		for (int r = 0; r < this.rows; r++) {
 			for (int c = 0; c < this.cols; c++) {
-
 				ConsoleCharacter ch = this.console.getChar(c, r);
-				if (ch.hasBackground()) {
-					g2d.setColor(ch.getBackground());
-					g2d.fillRect(c * this.fontWidth, r * this.fontHeight + this.fontMetrics.getDescent(),
-							this.fontWidth, this.fontHeight);
-				}
-
-				g2d.setColor(ch.getColor());
-				g2d.drawString("" + ch.getCharacter(), c * this.fontWidth, (r + 1) * this.fontHeight);
-
+				g2d.translate(c*fontWidth, r*fontHeight);
+				ch.draw(g2d, fontWidth, fontHeight, fontMetrics.getDescent());
+				g2d.translate(-c*fontWidth, -r*fontHeight);
 			}
 		}
 
@@ -120,6 +188,19 @@ public class EditorPanel extends JPanel
 			g2d.fillRect(c * this.fontWidth, r * this.fontHeight + this.fontMetrics.getDescent(), this.fontWidth,
 					this.fontHeight);
 			g2d.setComposite(original);
+		}
+		
+		for(Entry<Position, AsciiFrame> e : frames.entrySet()){
+			int offsetX = e.getKey().col * fontWidth;
+			int offsetY = e.getKey().row * fontHeight;
+			AsciiFrame frame = e.getValue();
+			int height = frame.getRows() * fontHeight;
+			int width =frame.getCols() * fontWidth;
+			g2d.translate(offsetX, offsetY);
+			frame.draw(g2d, fontWidth, fontHeight, fontMetrics.getDescent());
+			g2d.translate(-offsetX, -offsetY);
+			Rectangle2D border = new Rectangle2D.Double(offsetX, offsetY + fontMetrics.getDescent(), width, height);
+			g2d.draw(border);
 		}
 
 	}

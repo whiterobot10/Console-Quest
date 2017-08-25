@@ -11,6 +11,7 @@ public class AsciiFrameEditor {
 		
 		JFrame frame = new JFrame("Ascii Editor");
 		EditorPanel editorPanel = new EditorPanel(24, 80);
+		frame.setJMenuBar(editorPanel.getMenuBar());
 		ColorSelectorPanel colorSelector = new ColorSelectorPanel(editorPanel);
 		
 		
@@ -28,6 +29,10 @@ public class AsciiFrameEditor {
 		
 		
 		
+	}
+	
+	public static void exit(int code){
+		System.exit(code);
 	}
 	
 }
