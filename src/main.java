@@ -22,6 +22,7 @@ public class main implements KeyListener {
 
 	public static void main(String[] args) {
 		Ascii_Frame.readFrames("new sun");
+		Ascii_Frame.readFrames("human");
 		
 		
 		

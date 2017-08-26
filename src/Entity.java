@@ -9,7 +9,7 @@ public class Entity {
 	boolean isPC, bAttackInProcess = false, bIsAlive = true, bAttackThisTurn,bTargetFriendly;
 	Entity eOpponent = null;
 	String type = null;
-	String sPose = "", sAttackType, sAttackEffect;
+	String sPose = "Human_Still", sAttackType, sAttackEffect;
 
 	public Entity(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		atk = ATK;
@@ -41,15 +41,15 @@ public class Entity {
 			if (main.arlAttackpattern.get(0) == this && eOpponent != null && bIsAlive) {
 
 				main.SkillTesterOutput = -1;
-				main.arlSkillGames.add(new SkillGame(iXpos, iYpos - 5, 10000, eOpponent.aji.getValue()));
+				main.arlSkillGames.add(new SkillGame(iXpos-4, iYpos - 5, 10000, eOpponent.aji.getValue()));
 
 				while (main.SkillTesterOutput == -1) {
 					main.necesaryStuff();
 				}
-				sPose = "MeleeAtk";
+				sPose = "Human_Melee_Attack";
 
 				if (sAttackType != null && sAttackType.equals("Digitack")) {
-					sPose = "DigimancyAttack";
+					sPose = "Human_Digimancer_Action";
 				}
 				if (isPC) {
 					if (dex.getValue() * main.SkillTesterOutput > eOpponent.aji.getValue()
@@ -76,7 +76,7 @@ public class Entity {
 
 				}
 
-				sPose = "";
+				sPose = "Human_Still";
 				bAttackInProcess = false;
 				eOpponent = null;
 				main.arlAttackpattern.remove(0);
@@ -214,7 +214,7 @@ public class Entity {
 				eOpponent.hp = eOpponent.hpMax.getValue();
 			}
 			eOpponent.iHealthOffset += 10;
-			sPose = "DigimancyHeal";
+			sPose = "Human_Digimancer_Action";
 			for (int i = 0; i < 500; i++) {
 				main.necesaryStuff();
 			}
@@ -251,11 +251,11 @@ public class Entity {
 	void setTargetAndAttackType() {
 		clearStats();
 		for (Entity e : main.arlEntities) {
-			e.sPose = "";
+			e.sPose = "Human_Still";
 		}
 		sAttackEffect = "";
 		if (bIsAlive) {
-			sPose = "";
+			sPose = "Human_Still";
 			for (Entity e : main.arlEntities) {
 				e.iHealthOffset = 0;
 			}
@@ -315,7 +315,7 @@ public class Entity {
 		for (int i = 0; i < 500; i++) {
 			main.necesaryStuff();
 		}
-		eOpponent.sPose = "";
+		eOpponent.sPose = "Human_Still";
 
 	}
 
@@ -337,75 +337,81 @@ public class Entity {
 
 			}
 		}
-		eOpponent.sPose = "Hit";
+		eOpponent.sPose = "Human_Hit";
 
 	}
 
 	void draw(Graphics g, ConsolePanel console) {
 		DrawingPanel.drawSetup(g);
-		if (sPose.equals("")) {
-			console.setChars("    () ", iXpos, iYpos - 1);
-			console.setChars("   /||\\", iXpos, iYpos);
-			console.setChars("    || ", iXpos, iYpos + 1);
+		if(sPose.equals("Human_Still")&&!def.TempModifiers.isEmpty()){
+			sPose="Human_Block";
 		}
-		if (sPose.equals("MeleeAtk")) {
-			if (isPC) {
-				console.setChars("    ()  \\", eOpponent.iXpos - 5, eOpponent.iYpos - 1);
-				console.setChars("   /||\\,||", eOpponent.iXpos - 5, eOpponent.iYpos);
-				console.setChars("    /|'\\//", eOpponent.iXpos - 5, eOpponent.iYpos + 1);
-			} else {
-				console.setChars(" /  ()", eOpponent.iXpos + 5, eOpponent.iYpos - 1);
-				console.setChars("||,/||\\", eOpponent.iXpos + 5, eOpponent.iYpos);
-				console.setChars("\\\\/'|\\", eOpponent.iXpos + 5, eOpponent.iYpos + 1);
-			}
-		}
-		if (sPose.equals("Hit")) {
-			if (isPC) {
-				console.setChars("   ()", iXpos, iYpos - 1);
-				console.setChars("  /||", iXpos, iYpos);
-				console.setChars("   |\\", iXpos, iYpos + 1);
-			} else {
-				console.setChars("     ()", iXpos, iYpos - 1);
-				console.setChars("     ||\\", iXpos, iYpos);
-				console.setChars("     /|", iXpos, iYpos + 1);
-			}
-		}
-		if (sPose.equals("") && def.getValue() > def.iBase) {
-			if (isPC) {
-				console.setChars("    ()/\\ ", iXpos, iYpos - 1);
-				console.setChars("   /||\\/", iXpos, iYpos);
-				console.setChars("    || ", iXpos, iYpos + 1);
-			} else {
-				console.setChars("  /\\() ", iXpos, iYpos - 1);
-				console.setChars("  \\/||\\", iXpos, iYpos);
-				console.setChars("    || ", iXpos, iYpos + 1);
-			}
-		}
-		if (sPose.equals("Digimancy")) {
-			if (isPC) {
-				console.setChars("       ", iXpos, iYpos - 2);
-				console.setChars("    ()_¡ ", iXpos, iYpos - 1);
-				console.setChars("   /|| |", iXpos, iYpos);
-				console.setChars("    || ", iXpos, iYpos + 1);
-			} else {
-				console.setChars(" ¡_() ", iXpos, iYpos - 1);
-				console.setChars(" | ||\\", iXpos, iYpos);
-				console.setChars("   || ", iXpos, iYpos + 1);
-			}
-		}
-		if (sPose.equals("DigimancyHeal")) {
-			if (isPC) {
-				console.setChars("       ¡", iXpos, iYpos - 2);
-				console.setChars("    ()/| ", iXpos, iYpos - 1);
-				console.setChars("   /||", iXpos, iYpos);
-				console.setChars("    || ", iXpos, iYpos + 1);
-			} else {
-				console.setChars(" ¡", iXpos, iYpos - 2);
-				console.setChars(" |\\() ", iXpos, iYpos - 1);
-				console.setChars("   ||\\", iXpos, iYpos);
-				console.setChars("   || ", iXpos, iYpos + 1);
-			}
-		}
+		Ascii_Frame.getFrame(sPose).drawFrame(iXpos, iYpos, console, !isPC);
+		
+		
+//		if (sPose.equals("")) {
+//			console.setChars("    () ", iXpos, iYpos - 1);
+//			console.setChars("   /||\\", iXpos, iYpos);
+//			console.setChars("    || ", iXpos, iYpos + 1);
+//		}
+//		if (sPose.equals("MeleeAtk")) {
+//			if (isPC) {
+//				console.setChars("    ()  \\", eOpponent.iXpos - 5, eOpponent.iYpos - 1);
+//				console.setChars("   /||\\,||", eOpponent.iXpos - 5, eOpponent.iYpos);
+//				console.setChars("    /|'\\//", eOpponent.iXpos - 5, eOpponent.iYpos + 1);
+//			} else {
+//				console.setChars(" /  ()", eOpponent.iXpos + 5, eOpponent.iYpos - 1);
+//				console.setChars("||,/||\\", eOpponent.iXpos + 5, eOpponent.iYpos);
+//				console.setChars("\\\\/'|\\", eOpponent.iXpos + 5, eOpponent.iYpos + 1);
+//			}
+//		}
+//		if (sPose.equals("Hit")) {
+//			if (isPC) {
+//				console.setChars("   ()", iXpos, iYpos - 1);
+//				console.setChars("  /||", iXpos, iYpos);
+//				console.setChars("   |\\", iXpos, iYpos + 1);
+//			} else {
+//				console.setChars("     ()", iXpos, iYpos - 1);
+//				console.setChars("     ||\\", iXpos, iYpos);
+//				console.setChars("     /|", iXpos, iYpos + 1);
+//			}
+//		}
+//		if (sPose.equals("") && def.getValue() > def.iBase) {
+//			if (isPC) {
+//				console.setChars("    ()/\\ ", iXpos, iYpos - 1);
+//				console.setChars("   /||\\/", iXpos, iYpos);
+//				console.setChars("    || ", iXpos, iYpos + 1);
+//			} else {
+//				console.setChars("  /\\() ", iXpos, iYpos - 1);
+//				console.setChars("  \\/||\\", iXpos, iYpos);
+//				console.setChars("    || ", iXpos, iYpos + 1);
+//			}
+//		}
+//		if (sPose.equals("Digimancy")) {
+//			if (isPC) {
+//				console.setChars("       ", iXpos, iYpos - 2);
+//				console.setChars("    ()_¡ ", iXpos, iYpos - 1);
+//				console.setChars("   /|| |", iXpos, iYpos);
+//				console.setChars("    || ", iXpos, iYpos + 1);
+//			} else {
+//				console.setChars(" ¡_() ", iXpos, iYpos - 1);
+//				console.setChars(" | ||\\", iXpos, iYpos);
+//				console.setChars("   || ", iXpos, iYpos + 1);
+//			}
+//		}
+//		if (sPose.equals("DigimancyHeal")) {
+//			if (isPC) {
+//				console.setChars("       ¡", iXpos, iYpos - 2);
+//				console.setChars("    ()/| ", iXpos, iYpos - 1);
+//				console.setChars("   /||", iXpos, iYpos);
+//				console.setChars("    || ", iXpos, iYpos + 1);
+//			} else {
+//				console.setChars(" ¡", iXpos, iYpos - 2);
+//				console.setChars(" |\\() ", iXpos, iYpos - 1);
+//				console.setChars("   ||\\", iXpos, iYpos);
+//				console.setChars("   || ", iXpos, iYpos + 1);
+//			}
+//		}
 		if (sPose.equals("DigimancyAttack")) {
 			if (isPC) {
 				console.setChars("       ¡ºººººººººººººººº", eOpponent.iXpos - 8, eOpponent.iYpos - 2);
@@ -538,7 +544,7 @@ public class Entity {
 				sOutput += " " + iHealthOffset;
 			}
 		}
-		console.setChars(sOutput, iXpos, iYpos + 3);
+		console.setChars(sOutput, iXpos-4, iYpos +3);
 
 	}
 

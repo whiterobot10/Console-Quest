@@ -11,12 +11,12 @@ public class Digimancer extends Entity {
 	void draw(Graphics g, ConsolePanel console) {
 
 		if (sPose.equals("")) {
-			sPose="Digimancy";
+			sPose="Human_Digimancy";
 
 		}
 
 		if (sPose.equals("MeleeAtk")) {
-			sPose = "DigimancyAttack";
+			sPose = "Human_Digimancy";
 
 		}
 
@@ -44,7 +44,10 @@ public class Digimancer extends Entity {
 			ArrayList<String> arlAttackWeight = new ArrayList<String>();
 
 			arlAttackWeight.add("Digitack");
-				arlAttackWeight.add("Heal");
+			arlAttackWeight.add("Digitack");
+			for(Entity e :main.arlEntities){
+				if(!e.isPC&&e.hpMax.getValue()>e.hp)
+				arlAttackWeight.add("Heal");}
 
 
 			sAttackType = arlAttackWeight.get(main.rng.nextInt(arlAttackWeight.size()));

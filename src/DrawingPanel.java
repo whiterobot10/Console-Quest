@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class DrawingPanel extends JPanel {
 
 	public static void drawSetup(Graphics g) {
-		g.setFont(new Font("Monaco", Font.PLAIN, 20));
+		//g.setFont(new Font("Monospaced", Font.PLAIN, 20));
 		g.setColor(Color.green);
 	}
 
@@ -46,15 +46,15 @@ public class DrawingPanel extends JPanel {
 		// }
 
 		if (main.iDisplayChoice == 1 && main.arlAttackpattern.get(0).isPC) {
-			main.Console.setChars("    \\|/", main.arlAttackpattern.get(0).iXpos,
+			main.Console.setChars("    \\|/", main.arlAttackpattern.get(0).iXpos-4,
 					main.arlAttackpattern.get(0).iYpos - 4);
-			main.Console.setChars("     |", main.arlAttackpattern.get(0).iXpos, main.arlAttackpattern.get(0).iYpos - 5);
+			main.Console.setChars("     |", main.arlAttackpattern.get(0).iXpos-4, main.arlAttackpattern.get(0).iYpos - 5);
 			if (main.arlAttackpattern.get(0).type == "Entity") {
 
 				if (main.iSelected == 1) {
-					main.Console.setChars("(X): Basic Attack (Selected)", 20, 23);
+					main.Console.setChars("(X): BASIC ATTACK (SELECTED)", 20, 23);
 				} else {
-					main.Console.setChars("(1): Basic Attack", 20, 23);
+					main.Console.setChars("(1): BASIC ATTACK", 20, 23);
 				}
 				// if (main.iSelected == 2) {
 				// main.Console.setChars("(X): Focused Attack (Selected)", 20,
@@ -63,14 +63,14 @@ public class DrawingPanel extends JPanel {
 				// main.Console.setChars("(2): Focused Attack", 20, 24);
 				// }
 				if (main.iSelected == 2) {
-					main.Console.setChars("(X): Reckless Attack (Selected)", 20, 24);
+					main.Console.setChars("(X): RECKLESS ATTACK (SELECTED)", 20, 24);
 				} else {
-					main.Console.setChars("(2): Reckless Attack", 20, 24);
+					main.Console.setChars("(2): RECKLESS ATTACK", 20, 24);
 				}
 				if (main.iSelected == 3) {
-					main.Console.setChars("(X): Defend (Selected)", 20, 25);
+					main.Console.setChars("(X): DEFEND (SELECTED)", 20, 25);
 				} else {
-					main.Console.setChars("(3): Defend", 20, 25);
+					main.Console.setChars("(3): DEFEND", 20, 25);
 				}
 				// if (main.iSelected == 5) {
 				// main.Console.setChars("(X): Heal Self (Selected)", 20, 27);
@@ -108,14 +108,14 @@ public class DrawingPanel extends JPanel {
 			if (main.arlAttackpattern.get(0).type == "Digimancer") {
 
 				if (main.iSelected == 1) {
-					main.Console.setChars("(X): Digital Attack (Selected)", 20, 23);
+					main.Console.setChars("(X): DIGITAL ATTACK (SELECTED)", 20, 23);
 				} else {
-					main.Console.setChars("(1): Digital Attack", 20, 23);
+					main.Console.setChars("(1): DIGITAL ATTACK", 20, 23);
 				}
 				if (main.iSelected == 2) {
-					main.Console.setChars("(X): Heal Self (Selected)", 20, 24);
+					main.Console.setChars("(X): HEAL SPELL (SELECTED)", 20, 24);
 				} else {
-					main.Console.setChars("(2): Heal Self", 20, 24);
+					main.Console.setChars("(2): HEAL SPELL", 20, 24);
 				}
 			}
 
@@ -129,16 +129,16 @@ public class DrawingPanel extends JPanel {
 			}
 			main.Console.setChars("Select Target", 20, 23);
 			try {
-				main.Console.setChars("    \\|/", arlSelectTarget.get(main.iSelected - 1).iXpos,
+				main.Console.setChars("    \\|/", arlSelectTarget.get(main.iSelected - 1).iXpos-4,
 						arlSelectTarget.get(main.iSelected - 1).iYpos - 4);
-				main.Console.setChars("     |", arlSelectTarget.get(main.iSelected - 1).iXpos,
+				main.Console.setChars("     |", arlSelectTarget.get(main.iSelected - 1).iXpos-4,
 						arlSelectTarget.get(main.iSelected - 1).iYpos - 5);
 			} catch (java.lang.IndexOutOfBoundsException e) {
 				e.printStackTrace();
 			}
 
 		}
-		Ascii_Frame.getFrame("New_Sun_Blank").drawFrame(0, 0, main.Console, false);
+		//Ascii_Frame.getFrame("New_Sun_Blank").drawFrame(0, 0, main.Console, false);
 		main.Console.draw(g);
 	}
 

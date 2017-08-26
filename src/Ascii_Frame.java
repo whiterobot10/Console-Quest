@@ -10,19 +10,19 @@ import java.util.Scanner;
 public class Ascii_Frame {
 	private final String name;
 	private final String Lines[];
-	private final int xOff,yOff;
+	private final int xOff, yOff;
 
 	private static Map<String, Ascii_Frame> frames = new HashMap<>();
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(name+"\n");
-		for(String s: Lines){
-			sb.append(s+"\n");
+		sb.append(name + "\n");
+		for (String s : Lines) {
+			sb.append(s + "\n");
 		}
 		return sb.toString();
-		
+
 	}
 
 	static List<Ascii_Frame> readFrames(String fileName) {
@@ -35,7 +35,7 @@ public class Ascii_Frame {
 					int rows = scanner.nextInt();
 					int colls = scanner.nextInt();
 					StringBuilder sb = new StringBuilder();
-					for(int i=0;i<colls;i++){
+					for (int i = 0; i < colls; i++) {
 						sb.append(" ");
 					}
 					String whiteSpace = sb.toString();
@@ -44,7 +44,7 @@ public class Ascii_Frame {
 					String Lines[] = new String[rows];
 					scanner.nextLine();
 					for (int i = 0; i < rows; i++) {
-						String hold = scanner.nextLine()+whiteSpace;
+						String hold = scanner.nextLine() + whiteSpace;
 						Lines[i] = hold.substring(0, colls);
 					}
 					frames.add(new Ascii_Frame(Name, Lines, x, y));
@@ -59,12 +59,12 @@ public class Ascii_Frame {
 
 	}
 
-	public Ascii_Frame(String _Name, String _Lines[],int x, int y) {
+	public Ascii_Frame(String _Name, String _Lines[], int x, int y) {
 		name = _Name;
 		Lines = Arrays.copyOf(_Lines, _Lines.length);
 		frames.put(name, this);
-		xOff=x;
-		yOff=y;
+		xOff = x;
+		yOff = y;
 	}
 
 	public String getLine(int i) {
@@ -73,9 +73,10 @@ public class Ascii_Frame {
 
 	public void drawFrame(int x, int y, ConsolePanel console, boolean isFlipped) {
 		String printList[] = Arrays.copyOf(Lines, Lines.length);
+		
 
 		for (String s : printList) {
-			console.setChars(isFlipped ? Utils.ImprovedFlip(s) : s, x, y++);
+			console.setChars(isFlipped ? Utils.ImprovedFlip(s) : s, x - (isFlipped ? (Lines[0].length()-2) - xOff : xOff), y++ - yOff);
 		}
 	}
 
