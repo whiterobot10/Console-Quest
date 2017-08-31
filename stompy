@@ -1,0 +1,16 @@
+Frame Stompy_Still 4 6 3 2
+ _()_
+/|  |\
+| \/ |
+  ||
+Frame Stompy_Step 4 6 3 2
+ _()_
+/|  |\
+| \/ |
+  /\
+Frame Stompy_Melee_Attack 4 6 2 3
+ |\\|\\
+_/||/ ||
+| ||  ||
+ \/   /
+ ||

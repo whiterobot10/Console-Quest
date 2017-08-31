@@ -7,6 +7,7 @@ public class Bat extends Entity {
 	public Bat(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		super(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
 		type="Bat";
+		attackOffset = 0;
 	}
 
 	void draw(Graphics g, ConsolePanel console) {
