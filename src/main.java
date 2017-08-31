@@ -23,13 +23,14 @@ public class main implements KeyListener {
 	public static void main(String[] args) {
 		Ascii_Frame.readFrames("new sun");
 		Ascii_Frame.readFrames("human");
+		Ascii_Frame.readFrames("stompy");
 		
 		
 		
 
 		
 		arlEntities
-				.add(new Entity(true, 8, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
+				.add(new Blob(true, 8, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
 
 		arlEntities
 				.add(new Digimancer(true, 5, 17, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));

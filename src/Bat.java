@@ -8,7 +8,7 @@ public class Bat extends Entity {
 		super(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
 		type="Bat";
 		attackOffset = 0;
-		m = new Menu(new MenuItem("Basic Attack"), new MenuItem("Sonic Attack"));
+		m = new Menu(new MenuItem("Basic Attack",BasicAttack), new MenuItem("Sonic Attack",SonicAttack));
 	}
 
 	void draw(Graphics g, ConsolePanel console) {
@@ -35,33 +35,15 @@ public class Bat extends Entity {
 		super.draw(g, console);
 	}
 
-	void SelectAttack() {
-		if (isPC) {
-			main.iOption = 0;
-			main.iMax = 2;
-			main.iDisplayChoice = 1;
-			while (main.iOption == 0) {
-				main.necesaryStuff();
-			}
+	public void EnemyAI(){
+		ArrayList<String> arlAttackWeight = new ArrayList<String>();
 
-			if (main.iOption == 1) {
-				sAttackType = "Basic";
-			}
-
-			if (main.iOption == 2) {
-				sAttackType = "Screech";
-			}
-
-		} else {
-			ArrayList<String> arlAttackWeight = new ArrayList<String>();
-
-			arlAttackWeight.add("Basic");
-				arlAttackWeight.add("Screech");
+		arlAttackWeight.add("Basic");
+			arlAttackWeight.add("Screech");
 
 
-			sAttackType = arlAttackWeight.get(main.rng.nextInt(arlAttackWeight.size()));
+		sAttackType = arlAttackWeight.get(main.rng.nextInt(arlAttackWeight.size()));
 
-		}
 	}
 
 }

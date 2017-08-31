@@ -11,6 +11,36 @@ public class Entity {
 	String type;
 	String sPose = "Human_Still", sAttackType, sAttackEffect;
 	Menu m = new Menu();
+	Action BasicAttack= new Action() {
+		public void performAction() {
+			sAttackType = "Basic";
+		}
+	};
+	Action RecklessAttack= new Action() {
+		public void performAction() {
+			sAttackType = "Reckless";
+		}
+	};
+	Action SonicAttack= new Action() {
+		public void performAction() {
+			sAttackType = "Sonic";
+		}
+	};
+	Action Defend= new Action() {
+		public void performAction() {
+			sAttackType = "Defend";
+		}
+	};
+	Action Healz= new Action() {
+		public void performAction() {
+			sAttackType = "Heal";
+		}
+	};
+	Action DigitalAttack= new Action() {
+		public void performAction() {
+			sAttackType = "Digitack";
+		}
+	};
 
 	public Entity(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		atk = ATK;
@@ -26,6 +56,7 @@ public class Entity {
 		iYAnchor = iYpos;
 		type = "Entity";
 		attackOffset = 4;
+
 		m = new Menu(new MenuItem("Basic Attack"), new MenuItem("Reckless Attack"), new MenuItem("Defend"));
 
 	}
@@ -35,6 +66,30 @@ public class Entity {
 
 		hp = remainingHealth;
 
+	}
+	
+	public void EnemyAI(){
+		ArrayList<String> arlAttackWeight = new ArrayList<String>();
+
+		arlAttackWeight.add("Basic");
+		if (def.iTempChange <= 0) {
+			arlAttackWeight.add("ArmorUp");
+		}
+		// if (hp <= 20) {
+		// arlAttackWeight.add("Heal");
+		// }
+		// if (hp <= 10) {
+		// arlAttackWeight.add("Heal");
+		// arlAttackWeight.add("Heal");
+		// }
+		if (hp >= 40) {
+			arlAttackWeight.add("Reckless");
+			arlAttackWeight.add("Reckless");
+		}
+
+		sAttackType = arlAttackWeight.get(main.rng.nextInt(arlAttackWeight.size()));
+
+		
 	}
 
 	public void attack() {
@@ -138,44 +193,16 @@ public class Entity {
 	void SelectAttack() {
 		if (isPC) {
 			main.iOption = 0;
-			main.iMax = 5;
+			main.iMax = m.getLength();
 			main.iDisplayChoice = 1;
 			while (main.iOption == 0) {
 				main.necesaryStuff();
 			}
 
-			if (main.iOption == 1) {
-				// bAttackThisTurn = true;
-				sAttackType = "Basic";
-			}
-			if (main.iOption == 2) {
-				sAttackType = "Reckless";
-			}
-			if (main.iOption == 3) {
-				sAttackType = "ArmorUp";
-			}
+			m.getItem(main.iOption-1).performAction();
 
 		} else {
-			ArrayList<String> arlAttackWeight = new ArrayList<String>();
-
-			arlAttackWeight.add("Basic");
-			if (def.iTempChange <= 0) {
-				arlAttackWeight.add("ArmorUp");
-			}
-			// if (hp <= 20) {
-			// arlAttackWeight.add("Heal");
-			// }
-			// if (hp <= 10) {
-			// arlAttackWeight.add("Heal");
-			// arlAttackWeight.add("Heal");
-			// }
-			if (hp >= 40) {
-				arlAttackWeight.add("Reckless");
-				arlAttackWeight.add("Reckless");
-			}
-
-			sAttackType = arlAttackWeight.get(main.rng.nextInt(arlAttackWeight.size()));
-
+			EnemyAI();
 		}
 	}
 

@@ -8,7 +8,7 @@ Frame Stompy_Step 4 6 3 2
 /|  |\
 | \/ |
   /\
-Frame Stompy_Melee_Attack 4 6 2 3
+Frame Stompy_Melee_Atk 4 6 2 3
  |\\|\\
 _/||/ ||
 | ||  ||

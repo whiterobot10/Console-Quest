@@ -1,12 +1,12 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class Digimancer extends Entity {
+public class Big_Stampy extends Entity {
 
-	public Digimancer(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
+	public Big_Stampy(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		super(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
-		type="Digimancer";
-		m = new Menu(new MenuItem("Digital Attack",DigitalAttack), new MenuItem("Healz",Healz));
+		type="Stompy";
+		m = new Menu(new MenuItem("ME SMASH!",BasicAttack), new MenuItem("SMASH HARDER",RecklessAttack));
 	}
 
 	void draw(Graphics g, ConsolePanel console) {
