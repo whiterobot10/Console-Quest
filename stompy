@@ -1,14 +1,14 @@
-Frame Stompy_Still 4 6 3 2
+Frame Stompy_Still 4 6 2 2
  _()_
 /|  |\
 | \/ |
   ||
-Frame Stompy_Step 4 6 3 2
+Frame Stompy_Step 4 6 2 2
  _()_
 /|  |\
 | \/ |
   /\
-Frame Stompy_Melee_Atk 4 6 2 3
+Frame Stompy_Melee_Atk 5 6 1 3
  |\\|\\
 _/||/ ||
 | ||  ||

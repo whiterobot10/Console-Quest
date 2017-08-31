@@ -30,15 +30,15 @@ public class main implements KeyListener {
 
 		
 		arlEntities
-				.add(new Blob(true, 8, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
+				.add(new Big_Stampy(true, 8, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
 
 		arlEntities
-				.add(new Digimancer(true, 5, 17, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
+				.add(new Digimancer(true, 5, 17, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(40)));
 		
 		arlEntities.add(new Blob(false, 40, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
-		arlEntities.add(new Digimancer(false, 60, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
+		arlEntities.add(new Digimancer(false, 60, 7, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(40)));
 		arlEntities.add(new Blob(false, 35, 17, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
-		arlEntities.add(new Bat(false, 55, 17, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(50)));
+		arlEntities.add(new Bat(false, 55, 17, new Stat(15), new Stat(5), new Stat(50), new Stat(50), new Stat(20)));
 		GUIFunStuff.init();
 		GUIFunStuff.j.setBackground(new Color(0, 0, 0));
 

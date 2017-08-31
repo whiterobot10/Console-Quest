@@ -11,32 +11,32 @@ public class Entity {
 	String type;
 	String sPose = "Human_Still", sAttackType, sAttackEffect;
 	Menu m = new Menu();
-	Action BasicAttack= new Action() {
+	Action BasicAttack = new Action() {
 		public void performAction() {
 			sAttackType = "Basic";
 		}
 	};
-	Action RecklessAttack= new Action() {
+	Action RecklessAttack = new Action() {
 		public void performAction() {
 			sAttackType = "Reckless";
 		}
 	};
-	Action SonicAttack= new Action() {
+	Action SonicAttack = new Action() {
 		public void performAction() {
 			sAttackType = "Sonic";
 		}
 	};
-	Action Defend= new Action() {
+	Action Defend = new Action() {
 		public void performAction() {
 			sAttackType = "Defend";
 		}
 	};
-	Action Healz= new Action() {
+	Action Healz = new Action() {
 		public void performAction() {
 			sAttackType = "Heal";
 		}
 	};
-	Action DigitalAttack= new Action() {
+	Action DigitalAttack = new Action() {
 		public void performAction() {
 			sAttackType = "Digitack";
 		}
@@ -67,8 +67,8 @@ public class Entity {
 		hp = remainingHealth;
 
 	}
-	
-	public void EnemyAI(){
+
+	public void EnemyAI() {
 		ArrayList<String> arlAttackWeight = new ArrayList<String>();
 
 		arlAttackWeight.add("Basic");
@@ -89,7 +89,6 @@ public class Entity {
 
 		sAttackType = arlAttackWeight.get(main.rng.nextInt(arlAttackWeight.size()));
 
-		
 	}
 
 	public void attack() {
@@ -120,9 +119,6 @@ public class Entity {
 					}
 					attackAnim();
 
-					// System.out.println(this + " " + hp);
-					// System.out.println(eOpponent + " " + eOpponent.hp);
-
 				} else {
 					if (dex.getValue() > eOpponent.aji.getValue() * main.SkillTesterOutput
 							&& atk.getValue() - eOpponent.def.getValue() > 0) {
@@ -130,9 +126,6 @@ public class Entity {
 						onHit();
 					}
 					attackAnim();
-
-					// System.out.println(this + " " + hp);
-					// System.out.println(eOpponent + " " + eOpponent.hp);
 
 				}
 
@@ -199,7 +192,7 @@ public class Entity {
 				main.necesaryStuff();
 			}
 
-			m.getItem(main.iOption-1).performAction();
+			m.getItem(main.iOption - 1).performAction();
 
 		} else {
 			EnemyAI();
@@ -252,6 +245,9 @@ public class Entity {
 						arlTargets.remove(i--);
 					}
 				}
+				System.out.println(main.iOption);
+				main.iOption = main.rng.nextInt(arlTargets.size()) + 1;
+				System.out.println(main.iOption);
 			}
 			eOpponent = (arlTargets.get(main.iOption - 1));
 
@@ -395,7 +391,9 @@ public class Entity {
 			sPose = "Human_Block";
 		}
 		Ascii_Frame.getFrame(sPose).drawFrame(iXpos, iYpos, console, !isPC);
-
+		if (sAttackType!=null&&eOpponent!=null&&sAttackType.equals("Digitack")&&main.SkillTesterOutput!=-1) {
+			Ascii_Frame.getFrame("Human_Digimancer_Field").drawFrame(eOpponent.iXpos, eOpponent.iYpos, console, false);
+		}
 		// if (sPose.equals("")) {
 		// console.setChars(" () ", iXpos, iYpos - 1);
 		// console.setChars(" /||\\", iXpos, iYpos);
