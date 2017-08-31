@@ -40,84 +40,30 @@ public class DrawingPanel extends JPanel {
 			}
 		}
 
-		// if (main.iOption == 0) {
-		// main.Console.setChars("Selected Option is: " + main.iSelected, 400,
-		// 500);
-		// }
 
 		if (main.iDisplayChoice == 1 && main.arlAttackpattern.get(0).isPC) {
 			main.Console.setChars("    \\|/", main.arlAttackpattern.get(0).iXpos-4,
 					main.arlAttackpattern.get(0).iYpos - 4);
 			main.Console.setChars("     |", main.arlAttackpattern.get(0).iXpos-4, main.arlAttackpattern.get(0).iYpos - 5);
-			if (main.arlAttackpattern.get(0).type == "Entity") {
-
-				if (main.iSelected == 1) {
-					main.Console.setChars("(X): BASIC ATTACK (SELECTED)", 20, 23);
-				} else {
-					main.Console.setChars("(1): BASIC ATTACK", 20, 23);
-				}
-				// if (main.iSelected == 2) {
-				// main.Console.setChars("(X): Focused Attack (Selected)", 20,
-				// 24);
-				// } else {
-				// main.Console.setChars("(2): Focused Attack", 20, 24);
-				// }
-				if (main.iSelected == 2) {
-					main.Console.setChars("(X): RECKLESS ATTACK (SELECTED)", 20, 24);
-				} else {
-					main.Console.setChars("(2): RECKLESS ATTACK", 20, 24);
-				}
-				if (main.iSelected == 3) {
-					main.Console.setChars("(X): DEFEND (SELECTED)", 20, 25);
-				} else {
-					main.Console.setChars("(3): DEFEND", 20, 25);
-				}
-				// if (main.iSelected == 5) {
-				// main.Console.setChars("(X): Heal Self (Selected)", 20, 27);
-				// } else {
-				// main.Console.setChars("(5): Heal Self", 20, 27);
-				// }
-			}
-			if (main.arlAttackpattern.get(0).type == "Blob") {
-
-				if (main.iSelected == 1) {
-					main.Console.setChars("(X): Basic Attack (Selected)", 20, 23);
-				} else {
-					main.Console.setChars("(1): Basic Attack", 20, 23);
-				}
-				if (main.iSelected == 2) {
-					main.Console.setChars("(X): Reckless Attack (Selected)", 20, 24);
-				} else {
-					main.Console.setChars("(3): Reckless Attack", 20, 24);
-				}
-			}
-
-			if (main.arlAttackpattern.get(0).type == "Bat") {
-
-				if (main.iSelected == 1) {
-					main.Console.setChars("(X): Basic Attack (Selected)", 20, 23);
-				} else {
-					main.Console.setChars("(1): Basic Attack", 20, 23);
-				}
-				if (main.iSelected == 2) {
-					main.Console.setChars("(X): Sonar (Selected)", 20, 24);
-				} else {
-					main.Console.setChars("(2): Sonar", 20, 24);
-				}
-			}
-			if (main.arlAttackpattern.get(0).type == "Digimancer") {
-
-				if (main.iSelected == 1) {
-					main.Console.setChars("(X): DIGITAL ATTACK (SELECTED)", 20, 23);
-				} else {
-					main.Console.setChars("(1): DIGITAL ATTACK", 20, 23);
-				}
-				if (main.iSelected == 2) {
-					main.Console.setChars("(X): HEAL SPELL (SELECTED)", 20, 24);
-				} else {
-					main.Console.setChars("(2): HEAL SPELL", 20, 24);
-				}
-			}
+//			if (main.arlAttackpattern.get(0).type == "Entity") {
+//				Menu m = new Menu(new MenuItem("Basic Attack"),new MenuItem("Reckless Attack"),new MenuItem("Defend"));
+//				m.draw(g);
+//			}
+//			if (main.arlAttackpattern.get(0).type == "Blob") {
+//				Menu m = new Menu(new MenuItem("Basic Attack"),new MenuItem("Reckless Attack"));
+//				m.draw(g);
+//			}
+//
+//			if (main.arlAttackpattern.get(0).type == "Bat") {
+//				Menu m = new Menu(new MenuItem("Basic Attack",null),new MenuItem("Sonic Attack",null));
+//				m.draw(g);
+//			}
+//			if (main.arlAttackpattern.get(0).type == "Digimancer") {
+//				Menu m = new Menu(new MenuItem("Digital Attack",null),new MenuItem("Healing",null));
+//				m.draw(g);	
+//			}
+			main.arlAttackpattern.get(0).m.draw(g);
+			
 
 		}
 		if (main.iDisplayChoice == 2) {

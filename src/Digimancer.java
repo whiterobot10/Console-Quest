@@ -6,6 +6,7 @@ public class Digimancer extends Entity {
 	public Digimancer(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		super(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
 		type="Digimancer";
+		m = new Menu(new MenuItem("Digital Attack"), new MenuItem("Healz"));
 	}
 
 	void draw(Graphics g, ConsolePanel console) {

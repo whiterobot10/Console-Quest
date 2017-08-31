@@ -10,6 +10,7 @@ public class Entity {
 	Entity eOpponent = null;
 	String type;
 	String sPose = "Human_Still", sAttackType, sAttackEffect;
+	Menu m = new Menu();
 
 	public Entity(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		atk = ATK;
@@ -25,13 +26,14 @@ public class Entity {
 		iYAnchor = iYpos;
 		type = "Entity";
 		attackOffset = 4;
+		m = new Menu(new MenuItem("Basic Attack"), new MenuItem("Reckless Attack"), new MenuItem("Defend"));
 
 	}
 
 	public Entity(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX, int remainingHealth) {
 		this(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
 
-		hp = remainingHealth; 
+		hp = remainingHealth;
 
 	}
 
@@ -46,7 +48,8 @@ public class Entity {
 					main.necesaryStuff();
 				}
 				if (meleeAttack) {
-					moveToPos(isPC ? eOpponent.iXpos - attackOffset : eOpponent.iXpos + attackOffset, eOpponent.iYpos, 200);
+					moveToPos(isPC ? eOpponent.iXpos - attackOffset : eOpponent.iXpos + attackOffset, eOpponent.iYpos,
+							200);
 				}
 				sPose = "Human_Melee_Attack";
 

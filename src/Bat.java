@@ -8,6 +8,7 @@ public class Bat extends Entity {
 		super(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
 		type="Bat";
 		attackOffset = 0;
+		m = new Menu(new MenuItem("Basic Attack"), new MenuItem("Sonic Attack"));
 	}
 
 	void draw(Graphics g, ConsolePanel console) {

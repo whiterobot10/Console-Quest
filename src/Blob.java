@@ -6,6 +6,7 @@ public class Blob extends Entity {
 	public Blob(boolean PC, int x, int y, Stat ATK, Stat DEF, Stat AJI, Stat DEX, Stat HPMAX) {
 		super(PC, x, y, ATK, DEF, AJI, DEX, HPMAX);
 		type="Blob";
+		m = new Menu(new MenuItem("Basic Attack"), new MenuItem("Reckless Attack"));
 	}
 
 	void draw(Graphics g, ConsolePanel console) {
