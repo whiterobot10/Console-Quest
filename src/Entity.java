@@ -387,7 +387,7 @@ public class Entity {
 
 	void draw(Graphics g, ConsolePanel console) {
 		DrawingPanel.drawSetup(g);
-		if (sPose.equals("Human_Still") && !def.TempModifiers.isEmpty()) {
+		if (sPose.equals("Human_Still") && def.compareOrigins(this)) {
 			sPose = "Human_Block";
 		}
 		Ascii_Frame.getFrame(sPose).drawFrame(iXpos, iYpos, console, !isPC);

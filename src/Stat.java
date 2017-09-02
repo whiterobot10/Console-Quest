@@ -24,4 +24,13 @@ public class Stat {
 
 	}
 
+	public boolean compareOrigins(Entity entity) {
+		for(StatChange s:TempModifiers){
+		if(entity==s.inflicter){
+			return true;
+		}	
+		}
+		return false;
+	}
+
 }

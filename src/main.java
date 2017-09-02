@@ -24,6 +24,7 @@ public class main implements KeyListener {
 		Ascii_Frame.readFrames("new sun");
 		Ascii_Frame.readFrames("human");
 		Ascii_Frame.readFrames("stompy");
+		Ascii_Frame.readFrames("blob");
 		
 		
 		

@@ -1,0 +1,16 @@
+Frame Blob_Still 3 6 3 1
+ ____
+/  OO\
+|____|
+Frame Blob_Hit 3 7 5 1
+ ____
+/  XX\
+\_____\
+Frame Blob_Atk 3 10 5 1
+  __ ____
+ __ /  OO\
+__ /_____/
+Frame Blob_Walk 3 10 5 1
+  __ ____
+ __ /  OO\
+__ /_____/

@@ -11,13 +11,12 @@ public class Blob extends Entity {
 	}
 
 	void draw(Graphics g, ConsolePanel console) {
-		if (sPose.equals("MeleeAtk")) {
-			sPose = "BlobAttack";
-
-		} else if (sPose.equals("Hit")) {
-			sPose = "BlobHit";
-		} else if (sPose.equals("")) {
-			sPose = "Blob";
+		if (sPose.equals("Human_Melee_Attack")) {
+			sPose = "Blob_Atk";
+		} else if (sPose.equals("Human_Hit")) {
+			sPose = "Blob_Hit";
+		} else if (sPose.equals("Human_Still")) {
+			sPose = "Blob_Still";
 		}
 		super.draw(g, console);
 	}
