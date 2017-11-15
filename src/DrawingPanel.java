@@ -21,16 +21,16 @@ public class DrawingPanel extends JPanel {
 
 		// TODO Auto-generated method stub
 
-		synchronized (main.arlEntities) {
-			for (Entity e : main.arlEntities) {
-
-				if (e.bIsAlive) {
-
-					e.draw(g);
-
-				}
-			}
-		}
+//		synchronized (main.arlEntities) {
+//			for (Entity e : main.arlEntities) {
+//
+//				if (e.bIsAlive) {
+//
+//					e.draw(g);
+//
+//				}
+//			}
+//		}
 
 	}
 }
