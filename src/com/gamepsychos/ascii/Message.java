@@ -2,6 +2,6 @@ package com.gamepsychos.ascii;
 
 public enum Message {
 
-	REPAINT
+	REPAINT, COLOR_CHANGE
 	
 }
