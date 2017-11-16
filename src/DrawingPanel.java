@@ -8,31 +8,86 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class DrawingPanel extends JPanel {
 
-	
-	
+	public static void drawSetup(Graphics g) {
+		//g.setFont(new Font("Monospaced", Font.PLAIN, 20));
+		g.setColor(Color.green);
+	}
 
 	public static boolean bTargetFriendly = false;
-	public ArrayList<Entity>[] arlEntities;
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+		drawSetup(g);
+		main.Console.clear();
 
 		// TODO Auto-generated method stub
 
+		synchronized (main.arlSkillGames) {
+			for (SkillGame s : main.arlSkillGames) {
+				s.draw(g, main.Console);
+
+			}
+		}
 		synchronized (main.arlEntities) {
 			for (Entity e : main.arlEntities) {
 
 				if (e.bIsAlive) {
 
-					e.draw(g);
+					e.draw(g, main.Console);
 
 				}
 			}
 		}
 
+
+		if (main.iDisplayChoice == 1 && main.arlAttackpattern.get(0).isPC) {
+			main.Console.setChars("    \\|/", main.arlAttackpattern.get(0).iXpos-4,
+					main.arlAttackpattern.get(0).iYpos - 4);
+			main.Console.setChars("     |", main.arlAttackpattern.get(0).iXpos-4, main.arlAttackpattern.get(0).iYpos - 5);
+//			if (main.arlAttackpattern.get(0).type == "Entity") {
+//				Menu m = new Menu(new MenuItem("Basic Attack"),new MenuItem("Reckless Attack"),new MenuItem("Defend"));
+//				m.draw(g);
+//			}
+//			if (main.arlAttackpattern.get(0).type == "Blob") {
+//				Menu m = new Menu(new MenuItem("Basic Attack"),new MenuItem("Reckless Attack"));
+//				m.draw(g);
+//			}
+//
+//			if (main.arlAttackpattern.get(0).type == "Bat") {
+//				Menu m = new Menu(new MenuItem("Basic Attack",null),new MenuItem("Sonic Attack",null));
+//				m.draw(g);
+//			}
+//			if (main.arlAttackpattern.get(0).type == "Digimancer") {
+//				Menu m = new Menu(new MenuItem("Digital Attack",null),new MenuItem("Healing",null));
+//				m.draw(g);	
+//			}
+			main.arlAttackpattern.get(0).m.draw(g);
+			
+
+		}
+		if (main.iDisplayChoice == 2) {
+			ArrayList<Entity> arlSelectTarget = new ArrayList<Entity>();
+			for (Entity e : main.arlEntities) {
+				if (e.isPC == bTargetFriendly && e.bIsAlive) {
+					arlSelectTarget.add(e);
+				}
+			}
+			main.Console.setChars("Select Target", 20, 23);
+			try {
+				main.Console.setChars("    \\|/", arlSelectTarget.get(main.iSelected - 1).iXpos-4,
+						arlSelectTarget.get(main.iSelected - 1).iYpos - 4);
+				main.Console.setChars("     |", arlSelectTarget.get(main.iSelected - 1).iXpos-4,
+						arlSelectTarget.get(main.iSelected - 1).iYpos - 5);
+			} catch (java.lang.IndexOutOfBoundsException e) {
+				e.printStackTrace();
+			}
+
+		}
+		//Ascii_Frame.getFrame("New_Sun_Blank").drawFrame(0, 0, main.Console, false);
+		main.Console.draw(g);
 	}
+
 }
 // Abadi MT Condensed Extra Bold
 // Abadi MT Condensed Light
