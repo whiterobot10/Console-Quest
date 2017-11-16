@@ -23,6 +23,7 @@ public class DrawingPanel extends JPanel {
 
 		// TODO Auto-generated method stub
 
+<<<<<<< HEAD
 		synchronized (main.arlSkillGames) {
 			for (SkillGame s : main.arlSkillGames) {
 				s.draw(g, main.Console);
@@ -39,6 +40,18 @@ public class DrawingPanel extends JPanel {
 				}
 			}
 		}
+=======
+//		synchronized (main.arlEntities) {
+//			for (Entity e : main.arlEntities) {
+//
+//				if (e.bIsAlive) {
+//
+//					e.draw(g);
+//
+//				}
+//			}
+//		}
+>>>>>>> 35b19eb466047197b167069b8559887918cfcfe1
 
 
 		if (main.iDisplayChoice == 1 && main.arlAttackpattern.get(0).isPC) {
